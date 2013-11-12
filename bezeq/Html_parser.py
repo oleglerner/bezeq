@@ -52,13 +52,13 @@ class Html_parser:
         input_fields = self.get_input_fields()
 
         # Find the input field wich type is password
-        for index in xrange(len(input_fields)):
-             if input_fields[index].get('type') == 'password':
-                 break
+        for index in xrange(len(input_fields)):            
+            if input_fields[index].get('type') == 'password':
+                break
         
         # Before password required username, and id
         login_fields = []
-        for input_tag in input_fields[-num_of_fields : index + 1]:
+        for input_tag in input_fields[index - num_of_fields + 1 : index + 1]:            
             login_fields.append(input_tag.get('name'))
 
         return login_fields

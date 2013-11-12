@@ -26,12 +26,12 @@ class web_surfing(object):
         self.driver = webdriver.Firefox()
         self.html_parser = Html_parser("")
 
-    def get_next_page(self):
+    def get_next_page(self, url):
         """
         Purpose: Move on the website
         """
         first_page = self.driver.page_source
-        self.driver.get("https://mybill.kvish6.co.il/Login.do")
+        self.driver.get(url)
         current_page = None
         while current_page == first_page:
             time.sleep(10)
@@ -47,7 +47,7 @@ class web_surfing(object):
         # Update html_parser html document
         self.html_parser.update_parser_html(self.driver.page_source)
         # Get login fields
-        login_fields = self.html_parser.get_login_fields(len(login_credentials))
+        login_fields = self.html_parser.get_login_fields(len(login_credentials))        
         
         # Number of login credentials can't be differnt from number of login_fields
         if len(login_credentials) != len(login_fields):            
